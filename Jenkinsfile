@@ -5,8 +5,12 @@ pipeline {
             agent none
             steps {
                 echo '123456' 
-                archiveArtifacts artifacts: '*.txt', fingerprint: true
             }
+        }
+    }
+    post {
+        always {
+            archive '*.txt'
         }
     }
 }
