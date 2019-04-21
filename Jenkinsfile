@@ -1,16 +1,22 @@
 pipeline {
-    agent any 
-    stages {
-        stage('Build') { 
-            agent none
-            steps {
-                echo '123456' 
-            }
-        }
+  agent any
+  stages {
+    stage('Build') {
+      steps {
+        echo '123456'
+      }
     }
-    post {
-        always {
-            archiveArtifacts artifacts: '*.txt', fingerprint: true
-        }
+    stage('test') {
+      steps {
+        bat 'echo "test"'
+      }
     }
+  }
+  post {
+    always {
+      archiveArtifacts(artifacts: '*.txt', fingerprint: true)
+
+    }
+
+  }
 }
