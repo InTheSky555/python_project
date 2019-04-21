@@ -7,8 +7,17 @@ pipeline {
       }
     }
     stage('test') {
-      steps {
-        bat 'echo "test"'
+      parallel {
+        stage('test') {
+          steps {
+            bat 'echo "test"'
+          }
+        }
+        stage('test_2') {
+          steps {
+            bat 'echo "test_2"'
+          }
+        }
       }
     }
   }
